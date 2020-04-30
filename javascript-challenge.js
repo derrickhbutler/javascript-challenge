@@ -12,7 +12,8 @@ function displayDate(e) {
      var month = parseInt(date_array[1],10);
      var day = parseInt(date_array[2],10);
      console.log(month + "/" + day + "/" + year);
-+
+
+
 
      var user_date = new Date(year,month,day);
 filterDate(user_date);
@@ -67,5 +68,25 @@ Table_Box.innerHTML = "";
 Table_Box.appendChild(actual_table);
 
 }
+function buildTable(){
+     let  tableData = data;
+     var tableDiv =  d3.select('#Table') 
+     var tableVariable = tableDiv.append("table")
+                              .classed('table-striped', true)
+                              .classed('table-bordered', true)
+     var tableHeader = tableVariable.append("thead")
+     var table_head = tableHeader.append('tr')
+     Object.keys(tableData[0]).forEach( (key) => {
+          table_head.append('th').text(key)
+     })
 
+     var tBody = tableVariable.append('tbody')
 
+     data.forEach( (dict) => {
+          tRow = tBody.append('tr')
+          Object.entries(dict).forEach( value => {
+               tRow.append('td').text(value)
+          })
+     })
+}
+buildTable()
